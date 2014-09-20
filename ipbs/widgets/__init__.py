@@ -1,0 +1,1 @@
+from widget_panel import Panel
