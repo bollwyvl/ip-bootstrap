@@ -51,6 +51,11 @@ function(manager, widget, button, $, _, Classy, Regional){
         );
         return ButtonView.__super__.render.apply(this, arguments);
       },
+      
+      update: function(){
+        // don't do the normal button thing
+        return this;
+      },
     
       disabledChanged: function(){
         if(this.model.get('disabled')) {

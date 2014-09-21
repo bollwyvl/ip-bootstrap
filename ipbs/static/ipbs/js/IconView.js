@@ -18,22 +18,16 @@ define([
 ],
 function(manager, widget, $, _, Classy){
   var classy = Classy(widget.DOMWidgetView, [
-    {prefix: "fa-", field: "size", selection: "$stack"},
-    {selection: "$stack"}
+    {prefix: "fa-", field: "size"},
+    {}
   ]);
   
   var IconView = classy.extend({
     // namespace your CSS so that you don't break other people's stuff
-    className: 'ipbs IconView',
+    className: 'ipbs IconView fa-stack',
+    tagName: 'span',
 
-    // Initialize DOM, etc. called once per view creation,
-    // i.e. `display(widget)`
     render: function(){
-      // Do one-off things here
-      this.$stack = $('<span />')
-        .attr({"class": "fa-stack"})
-        .appendTo(this.$el);
-
       this.model.on({
         "change:icons": _.bind(this.iconsChanged, this)
       });
@@ -46,8 +40,7 @@ function(manager, widget, $, _, Classy){
 
     iconsChanged: function(){
       var icons = this.model.get('icons'),
-        stack = this.$stack.children('i'),
-        that = this,
+        stack = this.$el.children('i'),
         attr = {"class": []};
       
       // exit()
@@ -55,7 +48,7 @@ function(manager, widget, $, _, Classy){
       
       _.map(icons, function(icon, i){
         if(icon.match(/(-\dx)/)){
-          icon = icon.replace(/(-\dx)/, "-stack$1")
+          icon = icon.replace(/(-\dx)/, "-stack$1");
         }else{
           icon += " fa-stack-1x";
         }
@@ -65,7 +58,7 @@ function(manager, widget, $, _, Classy){
           stack.eq(i).attr(attr);
         }else{
           // enter()
-          this.$stack.append($("<i/>", attr));
+          this.$el.append($("<i/>", attr));
         }
       }, this);
       

@@ -24,7 +24,8 @@
     }
     
     function _regionChanged(key, regions){
-      return function(){
+      return function(options){
+        options = options || {};
         var that = this,
           regions$ = _.reduce(regions, function(m, v, k){
               m[k] = this["$"+k]
@@ -33,7 +34,7 @@
           cfg = regions[key],
           $it = regions$[key],
           it = this.model.get(key),
-          prev = this.model.previous(key),
+          prev = options.force ? [] : this.model.previous(key),
           hasChildren = !_.isEmpty(cfg.children);
       
         if(!_.isArray(it)){
@@ -119,7 +120,9 @@
         },
 
         render: function(){
-          _(regions).map(function(val, key){  this[listener(key)](); }, this);
+          _(regions).map(function(val, key){ 
+            this[listener(key)]({force: true});
+          }, this);
           
           return options.skipRender ?
             this : 
