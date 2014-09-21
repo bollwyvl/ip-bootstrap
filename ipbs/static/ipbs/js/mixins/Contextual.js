@@ -34,7 +34,7 @@
 
         this[selection].removeClass(prefix + this.model.previous(field));
       
-        if(ctx){
+        if(!_.isNull(ctx)){
           this[selection].addClass(prefix + this.model.get(field));
         }
       };

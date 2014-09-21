@@ -7,13 +7,14 @@ from IPython.html import widgets
 from IPython.utils.traitlets import (
     Any,
     Unicode,
-    Enum
+    Enum,
 )
 
 from .mixins import InstallerMixin
 from .bootstrap import (
     Context,
     Size,
+    Orientation,
 )
 
 class Button(InstallerMixin, widgets.Button):
@@ -29,7 +30,12 @@ class Button(InstallerMixin, widgets.Button):
     body = Any(sync=True)
 
 class ButtonGroup(InstallerMixin, widgets.Box):
-    pass
+    """
+    A Group of Buttons
+    """
+    _view_name = Unicode('ipbs/ButtonGroupView', sync=True)
+    size = Enum(Size, default_value=Size.default, sync=True)
+    orientation = Enum(Orientation, default_value=Orientation.horizontal, sync=True)
 
 class ButtonToolbar(InstallerMixin, widgets.Box):
     pass

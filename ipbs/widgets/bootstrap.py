@@ -33,3 +33,8 @@ Size = enum(**{
     "large": "lg",
     "extra_small": "xs"
 })
+
+Orientation = enum(**{
+    "horizontal": "",
+    "vertical": "-vertical"
+})
