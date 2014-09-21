@@ -26,3 +26,10 @@ Context = enum(**dict((name, name) for name in [
     "danger",
     "link"
 ]))
+
+Size = enum(**{
+    "default": None,
+    "small": "sm",
+    "large": "lg",
+    "extra_small": "xs"
+})

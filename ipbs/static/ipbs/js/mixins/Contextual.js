@@ -7,7 +7,7 @@
       var Contextual;
     
       var prefix = opts.prefix || "text-",
-        field = opts.fiel || "context",
+        field = opts.field || "context",
         selection = opts.selection || "$el",
         method = opts.method || field + "Changed";
     

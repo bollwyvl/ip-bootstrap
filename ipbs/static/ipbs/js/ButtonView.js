@@ -17,12 +17,14 @@ define([
   './mixins/Regional'
 ],
 function(manager, widget, $, _, Contextual, Regional){
-  var contextual = Contextual(
-      widget.DOMWidgetView, {
+  var contextual = Contextual(widget.DOMWidgetView, {
         prefix: "btn-"
       }),
-    regional = Regional(
-      contextual, {
+    sized = Contextual(contextual, {
+        prefix: "btn-",
+        field: "size"
+      }),
+    regional = Regional(sized, {
         "body": {children: ["description"]},
         "description": {}
       });

@@ -11,7 +11,10 @@ from IPython.utils.traitlets import (
 )
 
 from .mixins import InstallerMixin
-from .bootstrap import Context
+from .bootstrap import (
+    Context,
+    Size,
+)
 
 class Button(InstallerMixin, widgets.Button):
     """
@@ -21,6 +24,7 @@ class Button(InstallerMixin, widgets.Button):
 
     # bootstrap context color
     context = Enum(Context, default_value=Context.default, sync=True)
+    size = Enum(Size, default_value=Size.default, sync=True)
 
     body = Any(sync=True)
 
