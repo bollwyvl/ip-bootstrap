@@ -24,9 +24,13 @@ function(manager, widget, box, $, _, Contextual){
       oriented = Contextual(sized, {
         prefix: "btn-group",
         field: "orientation"
+      }),
+      justified = Contextual(oriented, {
+        prefix: "btn-group-",
+        field: "justification"
       });
   
-  var ButtonGroupView = oriented.extend({
+  var ButtonGroupView = justified.extend({
       tagName: 'div',
       className: 'ipbs ButtonGroupView'
     }); // /extend

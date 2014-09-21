@@ -38,3 +38,8 @@ Orientation = enum(**{
     "horizontal": "",
     "vertical": "-vertical"
 })
+
+Justification = enum(**{
+    "default": None,
+    "justified": "justified"
+})

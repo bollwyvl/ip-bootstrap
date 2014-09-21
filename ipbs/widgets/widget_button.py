@@ -15,6 +15,7 @@ from .bootstrap import (
     Context,
     Size,
     Orientation,
+    Justification,
 )
 
 class Button(InstallerMixin, widgets.Button):
@@ -35,7 +36,10 @@ class ButtonGroup(InstallerMixin, widgets.Box):
     """
     _view_name = Unicode('ipbs/ButtonGroupView', sync=True)
     size = Enum(Size, default_value=Size.default, sync=True)
-    orientation = Enum(Orientation, default_value=Orientation.horizontal, sync=True)
+    orientation = Enum(Orientation,
+        default_value=Orientation.horizontal,
+        sync=True)
+    justification = Enum(Justification, sync=True)
 
 class ButtonToolbar(InstallerMixin, widgets.Box):
     pass
