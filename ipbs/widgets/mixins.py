@@ -28,23 +28,35 @@ class InstallerMixin(object):
         '''
 
         # copy the static files to a namespaced location in `nbextensions`
-        install_nbextension(static)
+        install_nbextension(static, verbose=0)
+
+        # strip off the namespace
+        try:
+            view_ns, view_name = self._view_name.split("/")
+        except:
+            raise Exception("%s did not match the pattern `namespace/view`" % (
+                self._view_name
+            ))
 
         # magically-named files js/SomeWidgetView.js and css/SomeWidgetView.css
-        magic_module = os.path.join(static, 'js', '%s.js' % self._view_name) 
-        magic_style = os.path.join(static, 'css', '%s.css' % self._view_name)
+        magic_module = os.path.join(static, 'js', '%s.js' % view_name) 
+        magic_style = os.path.join(static, 'css', '%s.css' % view_name)
 
         view_module = None
+
         if os.path.exists(magic_module):
-            view_module =  'js/%s' % self._view_name
+            view_module =  'js/%s' % view_name
         view_module = getattr(self, '_view_module', view_module)
         
         if view_module is None:
-            raise NotImplemented('No JavaScript found for %s' % self._view_name)
+            raise Exception(
+                'No JavaScript found for %(name)s: i.e. js/%(name)s.js' % {
+                    "name": view_name
+                })
 
         styles = getattr(self, '_view_styles', [])
         if os.path.exists(magic_style):
-            styles.append('css/%s.css' % self._view_name)
+            styles.append('css/%s.css' % view_name)
         styles = [
             '/nbextensions/%s/%s' % (nbextension, style)
             for style in styles

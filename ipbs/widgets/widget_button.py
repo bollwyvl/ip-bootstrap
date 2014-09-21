@@ -13,17 +13,19 @@ from IPython.utils.traitlets import (
 from .mixins import InstallerMixin
 from .bootstrap import Context
 
-class Panel(InstallerMixin, widgets.DOMWidget):
+class Button(InstallerMixin, widgets.Button):
     """
-    A Panel, with optional header and footer.
+    A Button, with optional header and footer.
     """
-    _view_name = Unicode('ipbs/PanelView', sync=True)
+    _view_name = Unicode('ipbs/ButtonView', sync=True)
 
     # bootstrap context color
     context = Enum(Context, default_value=Context.default, sync=True)
-    
-    # all of these take either a string or a list of widgets
-    title = Any(sync=True)
+
     body = Any(sync=True)
-    heading = Any(sync=True)
-    footer = Any(sync=True)
+
+class ButtonGroup(InstallerMixin, widgets.Box):
+    pass
+
+class ButtonToolbar(InstallerMixin, widgets.Box):
+    pass

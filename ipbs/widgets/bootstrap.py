@@ -1,5 +1,15 @@
 # Various bootstrap constants and enums
 def enum(**enums):
+    """
+    Make an iterable enumeration
+
+    >>> Foo = enum(bar="bar")
+    >>> Foo.bar
+    'bar'
+    >>> list(Foo)
+    ['bar']
+
+    """
     class Enum(object):
         class __metaclass__(type):
             def __iter__(self):

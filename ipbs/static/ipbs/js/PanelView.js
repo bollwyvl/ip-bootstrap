@@ -13,145 +13,48 @@ define([
   'widgets/js/manager',
   'widgets/js/widget',
   'jquery',
-  'underscore'
+  'underscore',
+  './mixins/Contextual',
+  './mixins/Regional'
 ],
-function(manager, widget, $, _){
-  $.fn.appendText = function(text) {
-      return this.each(function() {
-          var textNode = document.createTextNode(text);
-          $(this).append(textNode);
+function(manager, widget, $, _, Contextual, Regional){
+  var contextual = Contextual(
+      widget.DOMWidgetView, {
+        prefix: "panel-"
+      }),
+    regional = Regional(
+      contextual, {
+        "heading": {children: ["title"], hideEmpty: true},
+        "title": {hideEmpty: true},
+        "body": {},
+        "footer": {hideEmpty: true}
       });
-  };
   
-  function hide($el){ return $el.addClass("hide"); }
-  function show($el){ return $el.removeClass("hide"); }
-  
-  function _regionChanged(region){
-    return function(){
-      var that = this,
-        $it = this["$"+region],
-        it = this.model.get(region),
-        prev = this.model.previous(region),
-        isHeading = region === "heading",
-        isTitle = region === "title",
-        emptyTitle = _.isEmpty(this.model.get("title")),
-        emptyHeading = _.isEmpty(this.model.get("heading"));
-      
-      if(["heading", "footer", "title"].indexOf(region) !== -1){
-        if(_.isEmpty(it) && !(isHeading && !emptyTitle)){
-          if(isTitle && emptyHeading){ hide(this.$heading); }
-          hide($it);
-        }else{
-          if(isTitle){ show(this.$heading); }
-          show($it);
-        }
-      }
-      
-      if(!_.isArray(it)){
-        if(isHeading){
-          $it.contents()
-            .filter(function(){ return this.nodeType === 3; })
-            .remove();
-          if(it != null){ $it.appendText(it); }
-        }else{
-          $it.text(it);
-        }
-      }else{
-        if(!_.isArray(prev)){
-          $it.contents()
-            .filter(function(){ return this != that.$title; })
-            .remove();
-          prev = [];
-        }
-
-        this.do_diff(prev, it, 
-          this.removeChildModel,
-          _.bind(function(model){
-            // Called when a model is added to the children list.
-            var view = this.create_child_view(model);
-            $it.append(view.$el);
-
-            // Trigger the displayed event of the child view.
-            this.after_displayed(function() {
-                view.trigger('displayed');
-            });
-          }, this)
-        );
-        
-        if(isHeading){
-          $it.append(this.$title);
-        }
-      }
-    };
-  }
-  
-  var PanelView = widget.DOMWidgetView.extend({
+  var PanelView = regional.extend({
     className: 'ipbs PanelView',
-
+    
     render: function(){
       this.$el.addClass("panel").append(
-        this.$heading = hide($("<div/>").addClass("panel-heading")
-          .append(this.$title = hide($("<div/>").addClass("panel-title")))),
+        this.$heading = $("<div/>").addClass("panel-heading")
+          .append(this.$title = $("<div/>").addClass("panel-title")),
         this.$body = $("<div/>").addClass("panel-body"),
-        this.$footer = hide($("<div/>").addClass("panel-footer"))
+        this.$footer = $("<div/>").addClass("panel-footer")
       );
-
-      var listen = {
-        "change:context": this.contextChanged,
-
-        "change:heading": this.headingChanged,
-        "change:title": this.titleChanged,
-        "change:body": this.bodyChanged,
-        "change:footer": this.footerChanged
-      };
-
       
-      _.bindAll(this,
-        "headingChanged", "titleChanged", "bodyChanged", "footerChanged",
-        "removeChildModel"
-      );
-
-      this.listenTo(this.model, listen);
-
-      _.map(listen, function(fn){ fn.call(this); }, this);
-
-      return this;
-    },
-
-    headingChanged: _regionChanged("heading"),
-    titleChanged: _regionChanged("title"),
-    bodyChanged: _regionChanged("body"),
-    footerChanged: _regionChanged("footer"),
-
-    removeChildModel: function(model) {
-      // never remove the title
-      if(model.views.indexOf(this.$title) !== -1){ return; }
-      // Called when a model is removed from the children list.
-      this.pop_child_view(model).remove();
-    },
-    
-    
-
-    contextChanged: function(){
-      var ctx = this.model.get("context");
-
-      this.$el.removeClass("panel-" + this.model.previous("context"));
-      
-      if(ctx){
-        this.$el.addClass("panel-" + this.model.get("context"));
-      }
+      return PanelView.__super__.render.apply(this, arguments);
     }
   }); // /extend
 
   // Register the PanelView with the widget manager.
   manager.WidgetManager.register_widget_view(
-    'PanelView',
+    'ipbs/PanelView',
     PanelView
   );
   
+  
   // Eventually, requirejs will be used directly: be ready.
   return {
-    'PanelView': PanelView
+    'ipbs/PanelView': PanelView
   };
 });
 }).call(this, this.define);
