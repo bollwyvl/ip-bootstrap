@@ -11,25 +11,28 @@
 define([
   'widgets/js/manager',
   'widgets/js/widget',
+  'widgets/js/widget_button',
   'jquery',
   'underscore',
   './mixins/Contextual',
   './mixins/Regional'
 ],
-function(manager, widget, $, _, Contextual, Regional){
-  var contextual = Contextual(widget.DOMWidgetView, {
+function(manager, widget, button, $, _, Contextual, Regional){
+  var regional = Regional(button.ButtonView, {
+        body: {children: ["description"]},
+        description: {}
+      }, {
+        skipRender: true
+      }),
+    contextual = Contextual(regional, {
         prefix: "btn-"
       }),
     sized = Contextual(contextual, {
         prefix: "btn-",
         field: "size"
-      }),
-    regional = Regional(sized, {
-        "body": {children: ["description"]},
-        "description": {}
       });
   
-  var ButtonView = regional.extend({
+  var ButtonView = sized.extend({
       tagName: 'button',
       className: 'ipbs ButtonView btn',
 
