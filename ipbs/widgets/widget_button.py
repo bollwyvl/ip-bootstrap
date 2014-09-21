@@ -42,4 +42,7 @@ class ButtonGroup(InstallerMixin, widgets.Box):
     justification = Enum(Justification, sync=True)
 
 class ButtonToolbar(InstallerMixin, widgets.Box):
-    pass
+    """
+    A Group of Button Grops
+    """
+    _view_name = Unicode('ipbs/ButtonToolbarView', sync=True)
