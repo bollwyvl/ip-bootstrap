@@ -14,26 +14,20 @@ define([
   'widgets/js/widget_box',
   'jquery',
   'underscore',
-  './mixins/Contextual'
+  './mixins/Classy'
 ],
-function(manager, widget, box, $, _, Contextual){
-  var sized = Contextual(box.BoxView, {
-        prefix: "btn-group-",
-        field: "size"
-      }),
-      oriented = Contextual(sized, {
-        prefix: "btn-group",
-        field: "orientation"
-      }),
-      justified = Contextual(oriented, {
-        prefix: "btn-group-",
-        field: "justification"
-      });
+function(manager, widget, box, $, _, Classy){
+  var classy = Classy(box.BoxView, [
+    {prefix: "btn-group-", field: "size"},
+    // missing hyphen not a typo!
+    {prefix: "btn-group",  field: "orientation"},
+    {prefix: "btn-group-", field: "justification"}
+  ]);
   
-  var ButtonGroupView = justified.extend({
-      tagName: 'div',
-      className: 'ipbs ButtonGroupView'
-    }); // /extend
+  var ButtonGroupView = classy.extend({
+    tagName: 'div',
+    className: 'ipbs ButtonGroupView'
+  }); // /extend
 
   // Register the PanelView with the widget manager.
   manager.WidgetManager.register_widget_view(

@@ -4,3 +4,4 @@ from widget_button import (
     ButtonGroup,
     ButtonToolbar
 )
+from widget_icon import Icon

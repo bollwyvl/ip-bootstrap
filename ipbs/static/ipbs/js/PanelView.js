@@ -14,16 +14,15 @@ define([
   'widgets/js/widget',
   'jquery',
   'underscore',
-  './mixins/Contextual',
+  './mixins/Classy',
   './mixins/Regional'
 ],
-function(manager, widget, $, _, Contextual, Regional){
-  var contextual = Contextual(
-      widget.DOMWidgetView, {
-        prefix: "panel-"
-      }),
-    regional = Regional(
-      contextual, {
+function(manager, widget, $, _, Classy, Regional){
+  var classy = Classy(
+      widget.DOMWidgetView, [
+        {prefix: "panel-"}
+      ]),
+    regional = Regional(classy, {
         "heading": {children: ["title"], hideEmpty: true},
         "title": {hideEmpty: true},
         "body": {},
