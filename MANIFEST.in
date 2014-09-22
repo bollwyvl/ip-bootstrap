@@ -1,11 +1,9 @@
-include AUTHORS.rst
-include CONTRIBUTING.rst
-include HISTORY.rst
 include LICENSE
-include README.rst
+include README.md
 
 recursive-include tests *
 recursive-include ipbs/static *
+recursive-include ipbs/data *
 recursive-exclude * __pycache__
 recursive-exclude * *.py[co]
 

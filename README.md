@@ -16,7 +16,7 @@ get an idea of what is done and what is left to do.
 While still in development, the best way to try this out would be:
 
 ```bash
-pip install -e git+https://github.com/bollwyvl/ip-bootstrap.git
+pip install -e git+https://github.com/bollwyvl/ip-bootstrap.git#egg=IPythonBootstrap
 ```
 
 # Usage Example
