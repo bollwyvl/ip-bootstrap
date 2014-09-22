@@ -6,10 +6,11 @@ could hack in some additional features with `add_class`, but this is cumbersome
 for one-off widgets, and limiting for more complex ones.
 
 This library extends existing widgets, like enhanced versions of `Button`, while
-adding new containers, typographic elements and layouts. See the [Roadmap][#roadmap]
+adding new containers, typographic elements and layouts. See the [roadmap][] to
+get an idea of what is done and what is left to do.
 
+[roadmap]: #roadmap
 [widgets]: http://nbviewer.ipython.org/github/ipython/ipython/blob/master/examples/Interactive%20Widgets/Index.ipynb
-
 
 # Installation/Development
 While still in development, the best way to try this out would be:
