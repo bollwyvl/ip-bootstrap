@@ -1,15 +1,50 @@
 # IPython Bootstrap Widgets
-The standard IPython widgets are enough to get the job done for most quick 
-layouts. If you are building richer applications, it's pretty nice to have 
+The standard IPython Notebok [widgets][] are enough to get the job done for most 
+quick layouts. If you are building richer applications, it's pretty nice to have 
 access to all of the lovely Twitter Bootstrap baseline CSS and components. You 
-can hack in some additional features with `add_class`, but this is annoying for
-one-off widgets.
+could hack in some additional features with `add_class`, but this is cumbersome 
+for one-off widgets, and limiting for more complex ones.
 
-This library extends existing widgets, like enhanced versions of `Button`, 
-`Dropdown` and others, while adding new containers and display options for 
-others.
+This library extends existing widgets, like enhanced versions of `Button`, while
+adding new containers, typographic elements and layouts. See the [Roadmap][#roadmap]
 
-# Roadmap (not neccessarily in order!)
+[widgets]: http://nbviewer.ipython.org/github/ipython/ipython/blob/master/examples/Interactive%20Widgets/Index.ipynb
+
+
+# Installation/Development
+While still in development, the best way to try this out would be:
+
+```bash
+pip install -e git+https://github.com/bollwyvl/ip-bootstrap.git
+```
+
+# Usage Example
+```python
+from ipbs.widgets import Panel, Label, Button, Icon
+from ipbs.bootstrap import Context
+from ipbs.icons import FontAwesome
+fa = FontAwesome()
+
+fro = Button(body=[Icon(fa.empire * 2), Label("Fro")], context=Context.danger)
+boz = Button(body=[Icon(fa.rebel * 2), Label("Boz")], context=Context.primary)
+Panel(
+    title="Frobnosticator",
+    body=[fro, boz],
+    footer="Millions and millions of frobs bozzed",
+    context=Context.success
+)
+```
+
+Check the example notebooks in the [docs][], or on [nbviewer][].
+
+[docs]: https://github.com/bollwyvl/ip-bootstrap/tree/master/docs
+[nbviewer]: http://nbviewer.ipython.org/github/bollwyvl/ip-bootstrap/tree/master/docs/
+
+# Roadmap 
+> not neccessarily in order!
+See something else that makes sense to add?
+[Suggest a change!](./edit/master/README.md)
+
 - CSS
   - [ ] Grid
   - [ ] Table
