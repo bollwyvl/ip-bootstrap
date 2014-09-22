@@ -35,6 +35,7 @@ Panel(
     context=Context.success
 )
 ```
+![example panel](https://raw.githubusercontent.com/bollwyvl/ip-bootstrap/master/docs/img/Panel.README.png)
 
 Check the example notebooks in the [docs][], or on [nbviewer][].
 
