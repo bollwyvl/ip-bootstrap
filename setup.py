@@ -11,8 +11,7 @@ except ImportError:
     from distutils.core import setup
 
 
-readme = open('README.rst').read()
-history = open('HISTORY.rst').read().replace('.. :changelog:', '')
+readme = open('README.md').read()
 
 requirements = [
     # TODO: put package requirements here
@@ -26,7 +25,7 @@ setup(
     name='ip-bootstrap',
     version='0.1.0',
     description='Bootstrap components as IPython widgets',
-    long_description=readme + '\n\n' + history,
+    long_description=readme,
     author='Nicholas Bollweg',
     author_email='nick.bollweg@gmail.com',
     url='https://github.com/bollwyvl/ip-bootstrap',
