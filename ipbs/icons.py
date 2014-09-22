@@ -113,4 +113,4 @@ class FontAwesome(IconSet):
             )
 
         def _repr_html_(self):
-            return '<i class="%s">' % unicode(self)
+            return '<i class="%s"></i>' % unicode(self)
