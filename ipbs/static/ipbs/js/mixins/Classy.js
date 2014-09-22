@@ -4,7 +4,8 @@
     var defaults = {
       prefix: "text-",
       field: "context",
-      selection: "$el"
+      selection: "$el",
+      type: "enum"
     };
 
     return function(__super__, traits){
@@ -28,7 +29,7 @@
         },
         
         render: function(){
-          _.map(traits, function(trait){ this[trait.method]() }, this);
+          _.map(traits, function(trait){ this[trait.method](); }, this);
 
           Classy.__super__.render.apply(this, arguments);
         }
@@ -37,9 +38,15 @@
       _.map(traits, function(trait){
         methods[trait.method] = function(){
           var ctx = this.model.get(trait.field),
-            sel = this[trait.selection];
+            sel = this[trait.selection],
+            prev =  this.model.previous(trait.field);
 
-          sel.removeClass(trait.prefix + this.model.previous(trait.field));
+          if(trait.type === "boolean"){
+            ctx = ctx ? trait.value : null;
+            prev = prev ? trait.value : null;
+          }
+
+          sel.removeClass(trait.prefix + prev);
       
           if(_.isNull(ctx)){
             return;

@@ -9,26 +9,27 @@ This library extends existing widgets, like enhanced versions of `Button`,
 `Dropdown` and others, while adding new containers and display options for 
 others.
 
-
-
 # Roadmap (not neccessarily in order!)
 - CSS
   - [ ] Grid
   - [ ] Table
   - [ ] Forms 
   - [X] Button
-    - Allows more content than just `description`, colors, sizes, etc.
+  - Typography
+    - [X] Lead
+    - [X] Transform 3.2?
+    - [X] Alignment 3.2?
 - Components
   - [ ] Glyphs (Glyphicons)
-    - [ ] FontAwesome
-  - [X] Button Group
-  - [X] Button Toolbar
+    - needed?
   - [ ] Input Group
   - [ ] Navbar
-  - [X] Panel
   - [ ] Badges
   - [ ] Alert
   - [ ] Wells
+  - [X] Button Group
+  - [X] Button Toolbar
+  - [X] Panel
 - JavaScript
   - [ ] Tooltip
   - [ ] Popover
@@ -40,5 +41,6 @@ others.
   - [ ] Carousel
   - [ ] Affix
 - Third-Party
+  - [X] FontAwesome
   - [ ] [bootstrap-datepicker](https://github.com/eternicode/bootstrap-datepicker)
-  - [] [bootstrap-colorpicker](https://github.com/mjolnic/bootstrap-colorpicker)
+  - [ ] [bootstrap-colorpicker](https://github.com/mjolnic/bootstrap-colorpicker)

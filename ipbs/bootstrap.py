@@ -27,6 +27,20 @@ Context = enum(**dict((name, name) for name in [
     "link"
 ]))
 
+Alignment = enum(**dict((name, name) for name in [
+    "left",
+    "center",
+    "right",
+    "justify",
+    "nowrap"
+]))
+
+Transformation = enum(**dict((name, name) for name in [
+    "lowercase",
+    "uppercase",
+    "capitalize"
+]))
+
 Size = enum(**{
     "default": None,
     "small": "sm",

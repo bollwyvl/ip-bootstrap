@@ -5,3 +5,4 @@ from widget_button import (
     ButtonToolbar
 )
 from widget_icon import Icon
+from widget_label import Label
