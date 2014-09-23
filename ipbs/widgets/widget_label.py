@@ -11,7 +11,7 @@ from IPython.utils.traitlets import (
     Bool
 )
 
-from .mixins import InstallerMixin
+from mixins import InstallerMixin
 from ipbs import bootstrap as bs
 
 class Label(InstallerMixin, widgets.DOMWidget):
