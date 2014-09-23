@@ -38,14 +38,15 @@ def main():
         controller.setup()
         controller.launch(buffer_output=False)
         exitcode = controller.wait()
-        controller.cleanup()
     except Exception as err:
         print(err)
-        return False
-    return True
+        return 1
+    finally:
+        controller.cleanup()
+    return exitcode
     
 def test():
-    assert main()
+    assert main() == 0
 
 if __name__ == '__main__':
     main()
