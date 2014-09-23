@@ -4,7 +4,7 @@ casper.test.begin "Widget: Panel", ->
       @execute_cell @append_cell """
         from IPython.display import display
         from ipbs.widgets import Panel
-        panel = Panel(value="2000-01-01")""",
+        panel = Panel(body="foo")""",
         "code"
   
     @wait_for_idle()
@@ -14,8 +14,6 @@ casper.test.begin "Widget: Panel", ->
         -> IPython.WidgetManager._view_types.PanelView != null
         "...registered"
       )
-      @test.assertExists "link[href*='PanelView.css']",
-        "...style loaded"
   
     @then ->
       @execute_cell @append_cell "display(panel)", "code"
@@ -24,22 +22,6 @@ casper.test.begin "Widget: Panel", ->
 
     @then ->
       @test.assertEval(
-        -> $(".widget-subarea input").val() == "2000-01-01"
+        -> $(".widget-subarea panel").length
         "...initialized with value"
       )
-
-    @wait_for_idle()
-
-    @thenEvaluate ->
-      $(".widget-subarea input").val("1999-09-09").trigger("input")
-
-    @wait_for_idle()
-
-    @then ->
-      @execute_cell @append_cell "panel.value", "code"
-
-    @wait_for_output 2
-
-    @then ->
-      @test.assertEquals "1999-09-09", @get_output_cell(2),
-        "...changes backend value"
