@@ -45,3 +45,4 @@ docs/_build
 # IPython
 .ipynb_checkpoints/*
 docs/.ipynb_checkpoints/*
+custom.xunit.xml

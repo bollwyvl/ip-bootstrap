@@ -41,9 +41,11 @@ def main():
         controller.cleanup()
     except Exception as err:
         print(err)
-        exitcode = 1
-    finally:
-        sys.exit(exitcode)
+        return False
+    return True
+    
+def test():
+    assert main()
 
 if __name__ == '__main__':
     main()

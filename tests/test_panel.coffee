@@ -21,7 +21,4 @@ casper.test.begin "Widget: Panel", ->
     @wait_for_idle()
 
     @then ->
-      @test.assertEval(
-        -> $(".widget-subarea panel").length
-        "...initialized with value"
-      )
+      @test.assertExists ".widget-subarea .panel", "...initialized with value"

@@ -47,6 +47,6 @@ setup(
         'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
     ],
-    test_suite='tests',
+    test_suite='nose.collector',
     tests_require=test_requirements
 )
