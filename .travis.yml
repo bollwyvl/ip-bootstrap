@@ -9,4 +9,4 @@ python:
 install:
   - "pip install ."
   - "pip install -r requirements-test.txt --use-mirrors"
-script: "python tests/test_widgets.py"
+script: python tests/test_widgets.py
