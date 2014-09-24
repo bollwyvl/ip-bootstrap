@@ -1,7 +1,7 @@
 import json
 import os
 
-import bootstrap as bs
+from . import bootstrap as bs
 
 Size = bs.enum(**{
     "large": "lg",

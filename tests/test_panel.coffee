@@ -15,12 +15,6 @@ casper.test.begin "Widget: Panel", ->
     @wait_for_idle()
 
     @then ->
-      @test.assertEval(
-        -> "ipbs/PanelView" of IPython.WidgetManager._view_types
-        "...registered"
-      )
-  
-    @then ->
       @execute_cell @append_cell "display(panel)", "code"
 
     @wait_for_idle()

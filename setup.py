@@ -46,6 +46,7 @@ setup(
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
+        'Framework :: IPython',
     ],
     test_suite='nose.collector',
     tests_require=test_requirements

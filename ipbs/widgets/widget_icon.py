@@ -9,7 +9,7 @@ from IPython.utils import traitlets
 import ipbs.bootstrap as bs
 from ipbs.icons import Size
 
-from mixins import InstallerMixin
+from .mixins import InstallerMixin
 
 class Icon(InstallerMixin, widgets.DOMWidget):
     """

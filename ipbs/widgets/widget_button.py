@@ -10,7 +10,7 @@ from IPython.utils.traitlets import (
     Enum,
 )
 
-from mixins import InstallerMixin
+from .mixins import InstallerMixin
 from ipbs.bootstrap import (
     Context,
     Size,

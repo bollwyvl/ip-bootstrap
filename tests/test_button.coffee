@@ -1,4 +1,4 @@
-casper.test.begin "Widget: Button...", ->
+casper.test.begin "Widget: Button", ->
   casper.notebook_test ->
     @then ->
       @viewport 1024, 768
@@ -11,12 +11,6 @@ casper.test.begin "Widget: Button...", ->
   
     @wait_for_idle()
 
-    @then ->
-      @test.assertEval(
-        -> "ipbs/ButtonView" of IPython.WidgetManager._view_types
-        "... registered"
-      )
-  
     @then ->
       @execute_cell @append_cell "display(btn)", "code"
 
