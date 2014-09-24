@@ -16,7 +16,7 @@ casper.test.begin "Widget: Panel", ->
 
     @then ->
       @test.assertEval(
-        -> IPython.WidgetManager._view_types["ipbs/PanelView"] != null
+        -> "ipbs/PanelView" of IPython.WidgetManager._view_types
         "...registered"
       )
   
@@ -26,7 +26,13 @@ casper.test.begin "Widget: Panel", ->
     @wait_for_idle()
 
     @then ->
-      @test.assertExists ".widget-subarea .panel", "...initialized with value"
+      @test.assertSelectorHasText(
+        ".widget-subarea #{selector}", text, "... populated with #{text}"
+      ) for text, selector of{
+        Title: ".panel-title"
+        Body: ".panel-body"
+        Footer: ".panel-footer"
+      }
     
     @then ->
-      @capturePadded "../docs/img/Panel.png", ".widget-area .panel"
+      @capturePadded "docs/img/Panel.png", ".widget-area .panel"

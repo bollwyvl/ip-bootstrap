@@ -1,11 +1,11 @@
-casper.test.begin "Widget: Button", ->
+casper.test.begin "Widget: Button...", ->
   casper.notebook_test ->
     @then ->
       @viewport 1024, 768
       @execute_cell @append_cell """
         from IPython.display import display
         from ipbs.widgets import Button
-        btn = Button(body="Label")
+        btn = Button(body="Text Label!")
         """,
         "code"
   
@@ -13,8 +13,8 @@ casper.test.begin "Widget: Button", ->
 
     @then ->
       @test.assertEval(
-        -> IPython.WidgetManager._view_types["ipbs/ButtonView"] != null
-        "...registered"
+        -> "ipbs/ButtonView" of IPython.WidgetManager._view_types
+        "... registered"
       )
   
     @then ->
@@ -23,7 +23,8 @@ casper.test.begin "Widget: Button", ->
     @wait_for_idle()
 
     @then ->
-      @test.assertExists ".widget-subarea .btn", "...initialized with value"
+      @test.assertSelectorHasText ".widget-subarea .btn", "Text Label!",
+        "... populated with label"
     
     @then ->
-      @capturePadded "../docs/img/Button.png", ".widget-area .btn"
+      @capturePadded "docs/img/Button.png", ".widget-area .btn"
