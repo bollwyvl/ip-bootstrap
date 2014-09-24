@@ -10,8 +10,8 @@ from IPython.utils.traitlets import (
     Enum
 )
 
-from .mixins import InstallerMixin
-from .bootstrap import Context
+from mixins import InstallerMixin
+from ipbs.bootstrap import Context
 
 class Panel(InstallerMixin, widgets.DOMWidget):
     """
