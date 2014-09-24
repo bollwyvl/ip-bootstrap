@@ -24,7 +24,10 @@ class JSController(iptestcontroller.JSController):
         ip_test_dir = iptestcontroller.get_js_test_dir()
 
         extras = [
-            '--includes=' + os.path.join(ip_test_dir, 'util.js'),
+            '--includes=' + ",".join([
+                os.path.join(ip_test_dir, 'util.js'),
+                os.path.join(test_root, 'util.coffee')
+            ]),
             '--engine=%s' % self.engine
         ]
 
