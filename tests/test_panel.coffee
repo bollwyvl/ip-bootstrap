@@ -1,19 +1,19 @@
-casper.test.begin "Widget: Panel", ->
+casper.test.begin "Panel", ->
   casper.notebook_test ->
     @then ->
       @viewport 1024, 768
       @execute_cell @append_cell """
-        from IPython.display import display
         from ipbs.widgets import Panel
         panel = Panel(
           title="Title",
           body="Body",
           footer="Footer"
-        )""", "code"
+        )
+        """, "code"
   
     @wait_for_idle()
 
-    @then -> @execute_cell @append_cell "display(panel)", "code"
+    @then -> @execute_cell @append_cell "panel", "code"
 
     @wait_for_idle()
 

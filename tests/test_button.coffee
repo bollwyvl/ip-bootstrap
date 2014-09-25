@@ -1,16 +1,15 @@
-casper.test.begin "Widget: Button", ->
+casper.test.begin "Button", ->
   casper.notebook_test ->
     @then ->
       @viewport 1024, 768
       @execute_cell @append_cell """
-        from IPython.display import display
         from ipbs.widgets import Button
         btn = Button(body="Text Label!")
         """, "code"
   
     @wait_for_idle()
 
-    @then -> @execute_cell @append_cell "display(btn)", "code"
+    @then -> @execute_cell @append_cell "btn", "code"
 
     @wait_for_idle()
 
