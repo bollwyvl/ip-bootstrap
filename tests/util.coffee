@@ -1,4 +1,5 @@
 casper.capturePadded = (file, sel, amt=10) ->
+  @viewport 1024, 768
   get = (sel) -> 
     node = document.querySelector sel
     node.getBoundingClientRect()

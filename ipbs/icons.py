@@ -19,6 +19,9 @@ class IconSet(object):
     def __init__(self):
         self._icons = self._get_icons()
     
+    def __iter__(self):
+        return self._icons.__iter__()
+    
     def __getattr__(self, name):
         return self.Icon([self._icons[name]], self)
     

@@ -9,24 +9,21 @@ casper.test.begin "Widget: Panel", ->
           title="Title",
           body="Body",
           footer="Footer"
-        )""",
-        "code"
+        )""", "code"
   
     @wait_for_idle()
 
-    @then ->
-      @execute_cell @append_cell "display(panel)", "code"
+    @then -> @execute_cell @append_cell "display(panel)", "code"
 
     @wait_for_idle()
 
     @then ->
       @test.assertSelectorHasText(
-        ".widget-subarea #{selector}", text, "... populated with #{text}"
+        ".widget-area #{selector}", text, "... populated with #{text}"
       ) for text, selector of{
         Title: ".panel-title"
         Body: ".panel-body"
         Footer: ".panel-footer"
       }
     
-    @then ->
-      @capturePadded "docs/img/Panel.png", ".widget-area .panel"
+    @then -> @capturePadded "docs/img/Panel.png", ".widget-area .panel"

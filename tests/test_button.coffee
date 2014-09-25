@@ -6,19 +6,16 @@ casper.test.begin "Widget: Button", ->
         from IPython.display import display
         from ipbs.widgets import Button
         btn = Button(body="Text Label!")
-        """,
-        "code"
+        """, "code"
   
     @wait_for_idle()
 
-    @then ->
-      @execute_cell @append_cell "display(btn)", "code"
+    @then -> @execute_cell @append_cell "display(btn)", "code"
 
     @wait_for_idle()
 
     @then ->
-      @test.assertSelectorHasText ".widget-subarea .btn", "Text Label!",
+      @test.assertSelectorHasText ".widget-area .btn", "Text Label!",
         "... populated with label"
     
-    @then ->
-      @capturePadded "docs/img/Button.png", ".widget-area .btn"
+    @then -> @capturePadded "docs/img/Button.png", ".widget-area .btn"
