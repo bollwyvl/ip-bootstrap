@@ -9,7 +9,7 @@ before_install:
   - casperjs --version
   - time sudo apt-get install libzmq3-dev
 install:
-  - pip install 'tornado<4'
+  - pip install 'tornado<4' --use-mirrors
   - pip install .
   - pip install -r requirements-test.txt --use-mirrors
-script: nosetests tests/test_*.py
+script: python setup.py nosetests

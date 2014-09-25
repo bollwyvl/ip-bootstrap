@@ -1,4 +1,6 @@
 # IPython Bootstrap Widgets
+[![Build Status](https://travis-ci.org/bollwyvl/ip-bootstrap.svg?branch=master)](https://travis-ci.org/bollwyvl/ip-bootstrap)
+
 The standard IPython Notebok [widgets][] are enough to get the job done for most 
 quick layouts. If you are building richer applications, it's pretty nice to have 
 access to all of the lovely Twitter Bootstrap baseline CSS and components. You 
@@ -42,6 +44,18 @@ Check the example notebooks in the [docs][], or on [nbviewer][].
 [docs]: https://github.com/bollwyvl/ip-bootstrap/tree/master/docs
 [nbviewer]: http://nbviewer.ipython.org/github/bollwyvl/ip-bootstrap/tree/master/docs/
 
+
+# Testing
+The test suite is small, but growing. To run the tests, use
+```bash
+python setup.py nosetests
+```
+This will run the browser tests, and refresh the screenshots in `docs/img`.
+
+Note that the automated browser tests requires CasperJS, therefore PhantomJS.
+These are most easily installed with npm, which is now included with NodeJS.
+
+
 # Roadmap 
 > not neccessarily in order!
 See something else that makes sense to add?
@@ -49,6 +63,7 @@ See something else that makes sense to add?
 
 - CSS
   - [ ] Grid
+    - _see [ipython-gridwidget](https://github.com/jdfreder/ipython-gridwidget)
   - [ ] Table
   - [ ] Forms 
   - [X] Button

@@ -48,7 +48,7 @@ def main():
         controller.cleanup()
     return exitcode
     
-def test():
+def test_widgets():
     assert main() == 0
 
 if __name__ == '__main__':
