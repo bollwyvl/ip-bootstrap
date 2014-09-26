@@ -7,6 +7,7 @@ from IPython.html import widgets
 from IPython.utils.traitlets import (
     Any,
     Unicode,
+    CUnicode,
     Enum,
     Bool
 )
@@ -20,7 +21,7 @@ class Label(InstallerMixin, widgets.DOMWidget):
     """
     _view_name = Unicode('ipbs/LabelView', sync=True)
 
-    value = Unicode(sync=True)
+    value = CUnicode(sync=True)
     
     html = Bool(False, sync=True)
 

@@ -64,7 +64,12 @@ class InstallerMixin(object):
 
         # tell the front-end to request the assets
         display(
-            Javascript('IPython.load_extensions("%s/%s");' % (
+            Javascript("""
+                if(!("%s/%s" in IPython.WidgetManager._view_types)){
+                    IPython.load_extensions("%s/%s");
+                }
+            """ % (
+                nbextension, view_name,
                 nbextension, view_module
             ), css=styles)
         )

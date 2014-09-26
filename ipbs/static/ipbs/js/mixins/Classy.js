@@ -1,16 +1,37 @@
-;(function(define){
+;(function(define, require){
   'use strict';
-  define(["underscore"], function(_){
-    var defaults = {
-      prefix: "text-",
-      field: "context",
-      selection: "$el",
-      type: "enum"
-    };
+  
+  require.config({
+    paths: {
+      'underscore.string': '/nbextensions/ipbs/lib/underscore.string.min'
+    },
+    shim: {'underscore.string': {deps: ['underscore']}}
+  });
+  
+  define(["underscore", "underscore.string"], function(_, _str){
+    _.mixin(_str.exports());
 
-    return function(__super__, traits){
+    var trait_defaults = {
+        prefix: "text-",
+        field: "context",
+        selection: "$el",
+        type: "enum"
+      },
+      default_options = {
+        skipRender: false
+      },
+      sizes = {
+        xs: "extra_small",
+        sm: "small",
+        md: "medium",
+        lg: "large"
+      };
+
+    var API = function(__super__, traits, options){
+      options = _.defaults(options || {}, default_options);
+
       traits = _.map(traits, function(trait){
-        trait = _.defaults(trait, defaults);
+        trait = _.defaults(trait, trait_defaults);
         trait.method = trait.method || trait.field + "Changed";
         return trait;
       });
@@ -25,13 +46,15 @@
               _.bind(this[trait.method], this));
             }, this
           );
-          Classy.__super__.initialize.apply(this, arguments);
+          return Classy.__super__.initialize.apply(this, arguments);
         },
         
         render: function(){
           _.map(traits, function(trait){ this[trait.method](); }, this);
 
-          Classy.__super__.render.apply(this, arguments);
+          return options.skipRender ? 
+            this :
+            Classy.__super__.render.apply(this, arguments);
         }
       };
       
@@ -48,11 +71,11 @@
 
           sel.removeClass(trait.prefix + prev);
       
-          if(_.isNull(ctx)){
-            return;
+          if(!_.isNull(ctx)){
+            sel.addClass(trait.prefix + ctx);
           }
           
-          sel.addClass(trait.prefix + ctx);
+          return this;
         };
       });
       
@@ -60,5 +83,19 @@
       
       return Classy;
     };
+    
+
+    API.makeSized = function(clsPrefixTemplate, fieldTemplate, opts){
+      opts = opts || {};
+
+      return _.map(sizes, function(field, cls){
+        return _.extend({}, opts, {
+          prefix: _.sprintf(clsPrefixTemplate, cls),
+          field: _.sprintf(fieldTemplate, field)
+        });
+      });
+    };
+    
+    return API;
   });
-}).call(this, this.define);
+}).call(this, this.define, this.require);

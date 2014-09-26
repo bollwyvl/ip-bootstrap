@@ -27,6 +27,7 @@ Transformation = enum(**dict((name, name) for name in [
 
 Size = enum(**{
     "default": None,
+    "medium": "md",
     "small": "sm",
     "large": "lg",
     "extra_small": "xs"
