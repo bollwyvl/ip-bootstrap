@@ -13,16 +13,26 @@ define([
   'widgets/js/widget',
   'widgets/js/widget_box',
   'jquery',
-  'underscore'
+  'underscore',
+  './mixins/Classy'
 ],
-function(manager, widget, box, $, _){
-  var ContainerView = box.BoxView.extend({
+function(manager, widget, box, $, _, Classy){
+  var classy = Classy(box.BoxView,
+    [
+      {},
+      {field: "background", prefix: "bg-"}
+    ],
+    {skipRender: true}
+  );
+  
+  var ContainerView = classy.extend({
     tagName: 'div',
     className: 'ipbs ContainerView container-fluid',
 
     render: function(){
         // Called when view is rendered.
         this.$box = this.$el;
+        ContainerView.__super__.render.apply(this, arguments);
         this.update();
         this.update_children([], this.model.get('children'));
         return this;

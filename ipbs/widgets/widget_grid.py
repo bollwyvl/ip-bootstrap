@@ -28,13 +28,18 @@ class Container(GridBase):
     A container
     """
     _view_name = Unicode('ipbs/ContainerView', sync=True)
-
+    
+    context = Enum(bs.Context, sync=True)
+    background = Enum(bs.Context, sync=True)
 
 class Row(GridBase):
     """
     A container
     """
     _view_name = Unicode('ipbs/RowView', sync=True)
+    
+    context = Enum(bs.Context, sync=True)
+    background = Enum(bs.Context, sync=True)
 
 
 def _make_op(fmt="%s"):
@@ -54,6 +59,7 @@ class Column(GridBase):
     _view_name = Unicode('ipbs/ColumnView', sync=True)
     
     context = Enum(bs.Context, sync=True)
+    background = Enum(bs.Context, sync=True)
 
     _MaybeInt = lambda: Int(None, allow_none=True, sync=True)
     

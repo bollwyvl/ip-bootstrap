@@ -13,16 +13,26 @@ define([
   'widgets/js/widget',
   'widgets/js/widget_box',
   'jquery',
-  'underscore'
+  'underscore',
+  './mixins/Classy'
 ],
-function(manager, widget, box, $, _){
-  var RowView = box.BoxView.extend({
+function(manager, widget, box, $, _, Classy){
+  var classy = Classy(box.BoxView,
+    [
+      {},
+      {field: "background", prefix: "bg-"}
+    ],
+    {skipRender: true}
+  );
+  
+  var RowView = classy.extend({
     tagName: 'div',
     className: 'ipbs RowView row',
 
     render: function(){
         // Called when view is rendered.
         this.$box = this.$el;
+        RowView.__super__.render.apply(this, arguments);
         this.update();
         this.update_children([], this.model.get('children'));
         return this;

@@ -46,24 +46,27 @@ Check the example notebooks in the [docs][], or on [nbviewer][].
 
 
 # Testing
-The test suite is small, but growing. To run the tests, use
+The test suite is small, but growing. To run the tests, use:
+
 ```bash
 python setup.py nosetests
 ```
+
 This will run the browser tests, and refresh the screenshots in `docs/img`.
 
 Note that the automated browser tests requires CasperJS, therefore PhantomJS.
-These are most easily installed with npm, which is now included with NodeJS.
+These are most easily installed with `npm`, which is now included with NodeJS.
 
 
 # Roadmap 
+
 > not neccessarily in order!
+
 See something else that makes sense to add?
 [Suggest a change!](./edit/master/README.md)
 
 - CSS
-  - [ ] Grid
-    - _see [ipython-gridwidget](https://github.com/jdfreder/ipython-gridwidget)
+  - [X] Grid
   - [ ] Table
   - [ ] Forms 
   - [X] Button

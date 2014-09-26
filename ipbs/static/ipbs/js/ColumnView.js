@@ -19,7 +19,10 @@ define([
 function(manager, widget, box, $, _, Classy){
   
   var classy = Classy(box.BoxView,
-    [{}].concat(
+    [
+      {},
+      {field: "background", prefix: "bg-"}
+    ].concat(
       Classy.makeSized("col-%s-", "%s", {hideEmpty: true}),
       Classy.makeSized("col-%s-offset-", "offset_%s", {hideEmpty: true}),
       Classy.makeSized("col-%s-push-", "push_%s", {hideEmpty: true}),
