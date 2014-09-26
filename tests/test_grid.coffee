@@ -13,16 +13,11 @@ casper.test.begin "Grid", ->
         from ipbs import bootstrap as bs
         contexts = list(bs.Context)
         
-        cols = [
-            Column(
-                Label(context),
-                context=context
-            )
+        grid = Container(*[
+            Row(Column(Label(context)) + i, background=context)
             for i in range(12)
             for context in [contexts[i % len(contexts)]]
-        ]
-        row = Row(*cols)
-        grid = Container(row)
+        ])
         """, "code"
   
     @wait_for_idle()
