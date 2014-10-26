@@ -1,8 +1,6 @@
 import glob
 import os
 import re
-import sys
-import time
 
 from IPython.testing import iptestcontroller
 
@@ -49,7 +47,8 @@ def main():
     finally:
         controller.cleanup()
     return exitcode
-    
+
+
 def test_widgets():
     assert main() == 0
 

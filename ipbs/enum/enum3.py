@@ -1,5 +1,3 @@
-
-# Various bootstrap constants and enums
 def enum(**enums):
     """
     Make an iterable enumeration
@@ -11,7 +9,7 @@ def enum(**enums):
     ['bar']
 
     """
-    
+
     class MetaEnum(type):
         def __iter__(self):
             return enums.values().__iter__()
@@ -20,5 +18,5 @@ def enum(**enums):
         pass
 
     [setattr(Enum, *en) for en in enums.items()]
-    
+
     return Enum

@@ -1,5 +1,3 @@
-import os
-
 # Import widgets, provisioners and traitlets
 from IPython.html import widgets
 from IPython.utils.traitlets import (
@@ -21,7 +19,7 @@ class Panel(InstallerMixin, widgets.DOMWidget):
 
     # bootstrap context color
     context = Enum(Context, default_value=Context.default, sync=True)
-    
+
     # all of these take either a string or a list of widgets
     title = Any(sync=True)
     body = Any(sync=True)

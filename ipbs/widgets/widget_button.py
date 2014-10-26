@@ -1,7 +1,3 @@
-# -*- coding: utf-8 -*-
-
-import os
-
 # Import widgets, provisioners and traitlets
 from IPython.html import widgets
 from IPython.utils.traitlets import (
@@ -19,6 +15,7 @@ from ipbs.bootstrap import (
 )
 
 _module = 'nbextensions/ipbs/js/widget_button'
+
 
 class Button(InstallerMixin, widgets.Button):
     """
@@ -42,7 +39,8 @@ class ButtonGroup(InstallerMixin, widgets.Box):
     _view_module = Unicode(_module, sync=True)
 
     size = Enum(Size, default_value=Size.default, sync=True)
-    orientation = Enum(Orientation,
+    orientation = Enum(
+        Orientation,
         default_value=Orientation.horizontal,
         sync=True)
     justification = Enum(Justification, sync=True)

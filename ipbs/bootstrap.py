@@ -1,4 +1,3 @@
-import sys
 from .enum import enum
 
 Context = enum(**dict((name, name) for name in [
