@@ -1,16 +1,7 @@
 ;(function(define, require){
   'use strict';
-  
-  require.config({
-    paths: {
-      'underscore.string': '/nbextensions/ipbs/lib/underscore.string.min'
-    },
-    shim: {'underscore.string': {deps: ['underscore']}}
-  });
-  
-  define(["underscore", "underscore.string"], function(_, _str){
-    _.mixin(_str.exports());
-
+    
+  define(["underscore"], function(_){
     var trait_defaults = {
         prefix: "text-",
         field: "context",
