@@ -11,8 +11,9 @@ test_root = os.path.dirname(__file__)
 tests = glob.glob(os.path.join(test_root, 'test_*.coffee')) + \
     glob.glob(os.path.join(test_root, 'test_*.js'))
 
+
 class JSController(iptestcontroller.JSController):
-    def __init__(self, section, xunit=True, engine='phantomjs'):
+    def __init__(self, section, xunit=True, engine='phantomjs', url=None):
         """Create new test runner."""
         iptestcontroller.TestController.__init__(self)
 
@@ -20,6 +21,7 @@ class JSController(iptestcontroller.JSController):
         self.section = section
         self.xunit = xunit
         self.slimer_failure = re.compile('^FAIL.*', flags=re.MULTILINE)
+        self.url = url
 
         ip_test_dir = iptestcontroller.get_js_test_dir()
 
