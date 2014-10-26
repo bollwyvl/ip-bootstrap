@@ -4,7 +4,7 @@ import re
 
 from IPython.testing import iptestcontroller
 
-test_root = os.path.dirname(__file__)
+test_root = os.path.join(os.path.dirname(__file__), 'static')
 
 tests = glob.glob(os.path.join(test_root, 'test_*.coffee')) + \
     glob.glob(os.path.join(test_root, 'test_*.js'))
