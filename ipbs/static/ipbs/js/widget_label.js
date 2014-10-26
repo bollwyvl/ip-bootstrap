@@ -9,21 +9,19 @@
   * @license BSD
   */
 define([
-  'widgets/js/manager',
+  'jquery', 'underscore',
   'widgets/js/widget',
-  'jquery',
-  'underscore',
   './mixins/Classy'
 ],
-function(manager, widget, $, _, Classy){
-  var classy = Classy(widget.DOMWidgetView, [
+function($, _, widget, Classy){
+
+
+  var LabelView = Classy(widget.DOMWidgetView, [
     {prefix: "", field: "lead", type: "boolean", value: "lead"},
     {field: "align"},
     {field: "transform"},
     {}
-  ]);
-  
-  var LabelView = classy.extend({
+  ]).extend({
     tagName: 'span',
     className: 'ipbs LabelView',
 
@@ -50,15 +48,9 @@ function(manager, widget, $, _, Classy){
     }
   }); // /extend
 
-  // Register the PanelView with the widget manager.
-  manager.WidgetManager.register_widget_view(
-    'ipbs/LabelView',
-    LabelView
-  );
-  
-  // Eventually, requirejs will be used directly: be ready.
+
   return {
-    'ipbs/LabelView': LabelView
+    LabelView: LabelView
   };
 });
 }).call(this, this.define);

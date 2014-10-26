@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 import os
 
 # Import widgets, provisioners and traitlets
@@ -15,11 +13,13 @@ from IPython.utils.traitlets import (
 from .mixins import InstallerMixin
 from ipbs import bootstrap as bs
 
+
 class Label(InstallerMixin, widgets.DOMWidget):
     """
     Just some text...
     """
-    _view_name = Unicode('ipbs/LabelView', sync=True)
+    _view_name = Unicode('LabelView', sync=True)
+    _view_module = Unicode('nbextensions/ipbs/js/widget_label', sync=True)
 
     value = CUnicode(sync=True)
     

@@ -15,7 +15,10 @@ from IPython.utils.traitlets import (
 from .mixins import InstallerMixin
 from ipbs import bootstrap as bs
 
+
 class GridBase(InstallerMixin, widgets.Box):
+    _view_module = Unicode('nbextensions/ipbs/js/widget_grid', sync=True)
+
     def __init__(self, *children,  **kwargs):
         kwargs["children"] = (
             list(children or []) +
@@ -23,20 +26,22 @@ class GridBase(InstallerMixin, widgets.Box):
         )
         super(GridBase, self).__init__(**kwargs)
 
+
 class Container(GridBase):
     """
     A container
     """
-    _view_name = Unicode('ipbs/ContainerView', sync=True)
+    _view_name = Unicode('ContainerView', sync=True)
     
     context = Enum(bs.Context, sync=True)
     background = Enum(bs.Context, sync=True)
+
 
 class Row(GridBase):
     """
     A container
     """
-    _view_name = Unicode('ipbs/RowView', sync=True)
+    _view_name = Unicode('RowView', sync=True)
     
     context = Enum(bs.Context, sync=True)
     background = Enum(bs.Context, sync=True)
@@ -53,15 +58,14 @@ def _make_op(fmt="%s"):
     
     return _op
 
+_MaybeInt = lambda: Int(None, allow_none=True, sync=True)
 
 class Column(GridBase):
     # A container that lives in a Row
-    _view_name = Unicode('ipbs/ColumnView', sync=True)
+    _view_name = Unicode('ColumnView', sync=True)
     
     context = Enum(bs.Context, sync=True)
     background = Enum(bs.Context, sync=True)
-
-    _MaybeInt = lambda: Int(None, allow_none=True, sync=True)
     
     extra_small = _MaybeInt()
     small = _MaybeInt()
