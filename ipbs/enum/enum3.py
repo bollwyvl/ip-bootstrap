@@ -1,3 +1,4 @@
+# flake8: noqa
 def enum(**enums):
     """
     Make an iterable enumeration
