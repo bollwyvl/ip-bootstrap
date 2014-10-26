@@ -90,8 +90,8 @@
 
       return _.map(sizes, function(field, cls){
         return _.extend({}, opts, {
-          prefix: _.sprintf(clsPrefixTemplate, cls),
-          field: _.sprintf(fieldTemplate, field)
+          prefix: _.template(clsPrefixTemplate)({name: cls}),
+          field: _.template(fieldTemplate)({name: field})
         });
       });
     };

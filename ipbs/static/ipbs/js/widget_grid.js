@@ -63,10 +63,10 @@ function($, _, widget, box, Classy){
       {},
       {field: "background", prefix: "bg-"}
     ].concat(
-      Classy.makeSized("col-%s-", "%s", {hideEmpty: true}),
-      Classy.makeSized("col-%s-offset-", "offset_%s", {hideEmpty: true}),
-      Classy.makeSized("col-%s-push-", "push_%s", {hideEmpty: true}),
-      Classy.makeSized("col-%s-pull-", "pull_%s", {hideEmpty: true})
+      Classy.makeSized("col-<%= name %>-", "<%= name %>", {hideEmpty: true}),
+      Classy.makeSized("col-<%= name %>-offset-", "offset_<%= name %>", {hideEmpty: true}),
+      Classy.makeSized("col-<%= name %>-push-", "push_<%= name %>", {hideEmpty: true}),
+      Classy.makeSized("col-<%= name %>-pull-", "pull_<%= name %>", {hideEmpty: true})
     ),
     {skipRender: true}
   ).extend({
