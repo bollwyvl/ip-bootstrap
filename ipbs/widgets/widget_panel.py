@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 import os
 
 # Import widgets, provisioners and traitlets
@@ -13,11 +11,13 @@ from IPython.utils.traitlets import (
 from .mixins import InstallerMixin
 from ipbs.bootstrap import Context
 
+
 class Panel(InstallerMixin, widgets.DOMWidget):
     """
     A Panel, with optional header and footer.
     """
-    _view_name = Unicode('ipbs/PanelView', sync=True)
+    _view_name = Unicode('PanelView', sync=True)
+    _view_module = Unicode('nbextensions/ipbs/js/widget_panel', sync=True)
 
     # bootstrap context color
     context = Enum(Context, default_value=Context.default, sync=True)

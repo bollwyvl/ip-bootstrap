@@ -10,14 +10,13 @@
   * @license BSD
   */
 define([
-  'widgets/js/manager',
+  'jquery', 'underscore',
   'widgets/js/widget',
-  'jquery',
-  'underscore',
-  './mixins/Classy',
-  './mixins/Regional'
+  './mixins/Classy', './mixins/Regional'
 ],
-function(manager, widget, $, _, Classy, Regional){
+function($, _, widget, Classy, Regional){
+
+
   var classy = Classy(
       widget.DOMWidgetView, [
         {prefix: "panel-"}
@@ -28,10 +27,10 @@ function(manager, widget, $, _, Classy, Regional){
         "body": {},
         "footer": {hideEmpty: true}
       });
-  
+
   var PanelView = regional.extend({
     className: 'ipbs PanelView',
-    
+
     render: function(){
       this.$el.addClass("panel").append(
         this.$heading = $("<div/>").addClass("panel-heading")
@@ -39,21 +38,15 @@ function(manager, widget, $, _, Classy, Regional){
         this.$body = $("<div/>").addClass("panel-body"),
         this.$footer = $("<div/>").addClass("panel-footer")
       );
-      
+
       return PanelView.__super__.render.apply(this, arguments);
     }
   }); // /extend
 
-  // Register the PanelView with the widget manager.
-  manager.WidgetManager.register_widget_view(
-    'ipbs/PanelView',
-    PanelView
-  );
-  
-  
+
   // Eventually, requirejs will be used directly: be ready.
   return {
-    'ipbs/PanelView': PanelView
+    PanelView: PanelView
   };
 });
 }).call(this, this.define);

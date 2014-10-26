@@ -62,12 +62,11 @@
             _.bind(this.removeChildModel, this),
             _.bind(function(model){
               // Called when a model is added to the children list.
-              var view = this.create_child_view(model);
-              $it.append(view.$el);
-
-              // Trigger the displayed event of the child view.
-              this.after_displayed(function() {
+              this.create_child_view(model, {
+                callback: function(view){
+                  $it.append(view.$el);
                   view.trigger('displayed');
+                }
               });
             }, this)
           );
