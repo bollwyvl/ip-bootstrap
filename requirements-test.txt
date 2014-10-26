@@ -10,3 +10,4 @@ pyzmq
 jsonschema
 jsonpointer
 mistune
+flake8
