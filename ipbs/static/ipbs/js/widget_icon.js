@@ -10,18 +10,17 @@
   * @license BSD
   */
 define([
-  'widgets/js/manager',
+  'jquery', 'underscore',
   'widgets/js/widget',
-  'jquery',
-  'underscore',
   './mixins/Classy'
 ],
-function(manager, widget, $, _, Classy){
+function($, _, widget, Classy){
+
   var classy = Classy(widget.DOMWidgetView, [
     {prefix: "fa-", field: "size"},
     {}
   ]);
-  
+
   var IconView = classy.extend({
     // namespace your CSS so that you don't break other people's stuff
     className: 'ipbs IconView fa-stack',
@@ -31,7 +30,7 @@ function(manager, widget, $, _, Classy){
       this.model.on({
         "change:icons": _.bind(this.iconsChanged, this)
       });
-      
+
       // call an update once the node has been added to the DOM...
       _.defer(_.bind(this.iconsChanged, this));
 
@@ -42,10 +41,10 @@ function(manager, widget, $, _, Classy){
       var icons = this.model.get('icons'),
         stack = this.$el.children('i'),
         attr = {"class": []};
-      
+
       // exit()
       stack.slice(icons.length).remove();
-      
+
       _.map(icons, function(icon, i){
         if(icon.match(/(-\dx)/)){
           icon = icon.replace(/(-\dx)/, "-stack$1");
@@ -61,22 +60,16 @@ function(manager, widget, $, _, Classy){
           this.$el.append($("<i/>", attr));
         }
       }, this);
-      
+
       // call __super__.update to handle housekeeping
       return IconView.__super__.update.apply(this, arguments);
     } // /update
 
   }); // /extend
 
-  // Register the IconView with the widget manager.
-  manager.WidgetManager.register_widget_view(
-    'ipbs/IconView',
-    IconView
-  );
-  
-  // Eventually, requirejs will be used directly: be ready.
+
   return {
-    'ipbs/IconView': IconView
+    IconView: IconView
   };
 });
 }).call(this, this.define);
